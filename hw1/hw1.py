@@ -22,9 +22,10 @@ def optimize(model, x_train, y_train, x_test, y_test, cv=None):
     score=model.score(x_test, y_test)
     
     if cv is not None:
-        from sklearn.model_selection import cross_val_score
+        from sklearn.model_selection import cross_validate
+#         from sklearn.model_selection import cross_val_score
         # Run cv number of simulations using k-fold cross validation approach
-        cv_scores=cross_val_score(model, x_train, y_train, cv=cv)
+        cv_scores=cross_validate(model, x_train, y_train, cv=cv)
         return (model, predictions, score, cv_scores)    
     else:
         return (model, predictions, score)
